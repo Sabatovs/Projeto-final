@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<!-- <head>: a "cabeça" da página. Nada aqui aparece na tela: são só configurações. -->
+
+<meta charset="utf-8">
+<!-- <meta charset>: faz acentos e símbolos (ç, ã, ♿) aparecerem direitinho -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- <meta viewport>: responsividade -->
+<title>Início – Catálogo dos 100 Itens de The Binding of Isaac</title>
+<!-- <link>: fonte comic sans... -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+
+<link rel="stylesheet" href="css/style.css">
+
+
+<script defer src="js/layout.js"></script>
+<script defer src="js/itens.js"></script>
+<script defer src="js/comum.js"></script>
+<script defer src="js/home.js"></script>
+<script defer src="js/carrossel.js"></script>
+</head>
+
+<body data-pagina="home">
+
+<main id="main" class="room">
+
+  <section class="box" id="sobre" aria-labelledby="hs">
+    <h2 id="hs">Sobre o jogo</h2>
+    <p>The Binding of Isaac é um jogo de ação e tiro com elementos de roguelike. Isaac foge da mãe, enfrenta criaturas e chefes e encontra itens estranhos que mudam seu corpo e lhe dão poderes. Este catálogo reúne os 100 itens do jogo base de 2011, sem a expansão Wrath of the Lamb.</p>
+
+    <div class="three">
+      <div class="card"><h3>O jogo</h3><p>Lançado em 28/09/2011 por Edmund McMillen e Florian Himsl, em Flash.</p></div>
+      <div class="card"><h3>Versão vanilla</h3><p>Só o jogo base, sem os itens da expansão Wrath of the Lamb.</p></div>
+      <div class="card"><h3>Ativos e passivos</h3><p>Ativos vão ao botão de espaço e recarregam por salas; passivos valem o jogo todo.</p></div>
+    </div>
+  </section>
+
+  <section class="box" id="destaques" aria-labelledby="hd">
+    <h2 id="hd">Itens em destaque</h2>
+    
+    <div class="carousel" role="group" aria-roledescription="carrossel" aria-label="Itens em destaque">
+
+      <div id="slides" aria-live="polite"></div>
+      <div class="ctl">
+
+        <button class="btn alt prev" aria-label="Item anterior">◀</button>
+        <button class="btn alt next" aria-label="Próximo item">▶</button>
+   
+        <span class="pos" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- VÍDEO DO YOUTUBE -->
+  <section class="box" id="video" aria-labelledby="hv">
+    <h2 id="hv">Vídeo do jogo</h2>
+    <div class="video">
+      <!-- <iframe>: abre OUTRA página dentro desta (aqui, o player do YouTube). -->
+      <iframe src="https://www.youtube-nocookie.com/embed/BiZ6mMlOF7c" title="Vídeo sobre The Binding of Isaac"
+        loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen
+        allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen"></iframe>
+    </div>
+
+    <p><a href="https://www.youtube.com/watch?v=BiZ6mMlOF7c" target="_blank" rel="noopener">Abrir o vídeo no YouTube ↗</a></p>
+  </section>
+
+  <!-- GALERIA DE IMAGENS -->
+  <section class="box" id="galeria" aria-labelledby="hg">
+    <h2 id="hg">Imagens do jogo</h2>
+    <!-- data-auto="7000": um "dado" que o JS lê pra saber de quanto em quanto tempo passar as imagens automaticamente(7000 ms) -->
+    <div class="carousel galeria" role="group" aria-roledescription="carrossel" aria-label="Imagens do jogo" data-auto="7000">
+      <!-- "palco" = a área grande onde a imagem aparece-->
+      <div class="palco">
+        <span class="pos" aria-hidden="true"></span>  
+       
+        <figure class="shot"><img src="img/jogo/basement.png" alt="Basement I: o primeiro andar do jogo, com fogueiras e itens à venda."></figure>
+        <figure class="shot"><img src="img/jogo/cave-1.png" alt="Cave I: sala de caverna com buracos e inimigos."></figure>
+        <figure class="shot"><img src="img/jogo/cave-2.png" alt="Cave I: Isaac enfrenta moscas e monstros em uma sala de caverna."></figure>
+        <figure class="shot"><img src="img/jogo/larry-jr.png" alt="Tela de chefe: Isaac contra Larry Jr."></figure>
+        <figure class="shot"><img src="img/jogo/depths.png" alt="The Depths I: sala com baú dourado cercada por inimigos."></figure>
+
+        <button type="button" class="seta prev" aria-label="Imagem anterior">❮</button>
+        <button type="button" class="seta next" aria-label="Próxima imagem">❯</button>
+        <div class="progresso" aria-hidden="true"></div> 
+        <div class="ferramentas">                   
+          <button type="button" class="mini pausa" aria-label="Pausar a passagem automática">⏸</button>
+          <button type="button" class="mini tela" aria-label="Tela cheia">⛶</button>
+        </div>
+      </div>
+      <div class="thumbs"></div>   
+      <p class="legenda"></p>     
+    </div>
+  </section>
+
+  <!-- leva pra página com todos os itens -->
+  <a class="tile" href="itens.html">
+    <img src="img/icone-itens.png" alt="">   
+    <div><strong>Ver os 100 itens</strong><span>Pesquise, filtre por ativos e passivos e veja o efeito de cada item.</span></div>
+  </a>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- <!DOCTYPE html>: diz pro navegador "isso aqui é uma página HTML moderna". -->
+<html lang="pt-BR" data-theme="dark">
+<!-- <html>: a tag que envolve a página inteira.
+       lang="pt-BR" ........ diz o idioma (ajuda leitor de tela e tradutor)
+       data-theme="dark" ... começa no tema escuro; o botão de acessibilidade troca pra "light" -->
+<head>
+
+<meta charset="utf-8">
+<!-- <meta charset>: faz acentos e símbolos (ç, ã, ♿) aparecerem de forma que presta -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- <meta viewport>: faz o site se ajustar à largura do celular, sendo responsivo -->
+<title>Os 100 itens – Catálogo dos 100 Itens de The Binding of Isaac</title>
+
+<!-- <link>: fonte comic sans -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+<!-- ..o arquivo de estilos (cores, tamanhos, posições) que é o css -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- <script>: liga ao arquivo de JavaScript .
+     defer = só roda depois da página carregar, e nessa ordem aqui -->
+<script defer src="js/layout.js"></script>
+<script defer src="js/itens.js"></script>
+<script defer src="js/comum.js"></script>
+<script defer src="js/catalogo.js"></script>
+</head>
+
+<body data-pagina="itens">
+
+<main id="main" class="room">
+
+  <!-- LISTA DOS ITENS: busca + abas-->
+  <section class="box" id="itens" aria-labelledby="hi">
+    <h2 id="hi">Os 100 itens</h2>
+
+    <div class="search">
+     
+      <label for="q" class="so-leitor">Pesquisar item</label>
+      <!-- <input>: um campo pra digitar. type="search" = campo de busca; placeholder = a dica cinza dentro dele -->
+      <input id="q" type="search" placeholder="Pesquisar item ou efeito…">
+    </div>
+
+    <div role="tablist" aria-label="Filtrar por tipo">
+      <button role="tab" aria-selected="true" data-f="">Todos</button>
+      <button role="tab" aria-selected="false" data-f="a">Ativos</button>
+      <button role="tab" aria-selected="false" data-f="p">Passivos</button>
+    </div>
+
+    <p id="count" role="status"></p>   <!-- "110 de 110 itens (...)" -->
+    <div class="grid" id="grid"></div> 
+  </section>
+
+</main>
+
+</body>
+</html>

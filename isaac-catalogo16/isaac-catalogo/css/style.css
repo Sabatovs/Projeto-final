@@ -1,0 +1,221 @@
+
+
+:root{
+
+  --panel:#5c372c;      /* fundo dos painéis */
+  --panel2:#4b2c23;     /* fundo dos cartões dentro dos painéis */
+  --text:#f6ece3;       /* texto normal */
+  --muted:#e0cdbf;      /* texto mais apagadinho */
+  --accent:#f4b45e;     /* links, botões e destaques */
+  --onaccent:#26140f;   /* cor do texto em cima do accent */
+  --titulo:#d9b06a;     /* títulos (amarelo da logo) */
+  --rule:#3b2119;       /* linhas embaixo dos títulos */
+  --line:#7d4c3c;       /* bordas */
+  --gold:#e9b96e;       /* dourado do menu */
+  --brick:#8a5649;      /* cor de tijolo das molduras */
+  --focus:#9bc0ff;      /* contorno de quando navega pelo teclado */
+
+  /* fundo do site: tema claro troca (laterais, topo e rodapé) */
+  --fundo:#111014;        /* laterais da página */
+  --fundo-topo:#101014;   /* faixa da logo e rodapé */
+  --texto-fundo:#dddddd;  /* texto do rodapé */
+  --link-fundo:#e9b96e;   /* link do rodapé */
+  --sub:#e9b96e;          /* "Catálogo dos 100 itens" ao lado da logo */
+
+  --fonte:"Comic Sans MS","Comic Sans","Comic Neue","Chalkboard SE",sans-serif;
+
+  box-sizing:border-box;
+  font-size:100%;       /* o botão A+/A- do painel de acessibilidade mexe nisso */
+  padding-top:env(safe-area-inset-top,0px);      
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* tema claro: troca SÓ o fundo preto do site */
+:root[data-theme="light"]{
+  --fundo:#efe4d6; --fundo-topo:#e2d2bd; --texto-fundo:#3b2119; --link-fundo:#7a3a10; --sub:#6b3f12;
+}
+/* alto contraste: painéis pretos com letras claras */
+:root[data-contrast="high"]{
+  --panel:#000; --panel2:#000; --text:#fff; --muted:#fff; --accent:#ffd27a;
+  --titulo:#ffd27a; --rule:#fff; --line:#fff; --onaccent:#000;
+}
+
+/* ---------- 2. BASE ---------- */
+*{box-sizing:border-box}
+
+/* o body é uma coluna: topo,imagem da sala do basemant que fica no meio do site e (que estica) e rodapé lá embaixo */
+body{margin:0; display:flex; flex-direction:column; min-height:100dvh;
+  background:var(--fundo); color:var(--text); font:1rem/1.55 var(--fonte)}
+
+button{font-family:inherit}
+a{color:var(--accent)}
+h2,h3{color:var(--titulo)}
+:focus-visible{outline:3px solid var(--focus); outline-offset:2px}
+
+label{display:block; margin:.7rem 0 .2rem; font-weight:700}
+input,textarea{width:100%; padding:.6rem; background:var(--panel2); color:var(--text);
+  border:2px solid var(--line); border-radius:6px; font:inherit}
+
+.so-leitor{position:absolute; left:-999px}
+.skip{position:absolute; left:-999px; padding:.5rem; background:#fff; color:#000}  
+.skip:focus{left:8px; top:8px; z-index:99}
+
+.ok{color:var(--accent); font-weight:700}   /* mensagem de "enviado" do contato */
+
+/* ---------- 3. TOPO E MENU ----------
+   Os dois ficam alinhados com a sala (1100px) usando esse cálculo do padding. */
+header.wiki{display:flex; align-items:center; gap:.7rem; background:var(--fundo-topo);
+  padding:.9rem max(1rem,calc((100% - 1100px)/2 + 76px))}
+.logo{margin:0; line-height:0}
+.logo img{height:clamp(40px,6vw,56px); width:auto}
+.sub{margin:.9rem 0 0; color:var(--sub); font-size:clamp(.85rem,1.8vw,1.15rem)}   /* "Catálogo dos 100 itens" */
+header.wiki .isaac{height:76px; width:auto; margin-left:auto; margin-right:-66px}   /* Isaac chorando à direita */
+
+nav.tabsnav{display:flex; flex-wrap:wrap; align-items:center; gap:.2rem;
+  padding:0 max(1rem,calc((100% - 1100px)/2 + 44px));
+  background:linear-gradient(#3b2119,#2d1812); border-top:1px solid #000;
+  border-bottom:4px solid var(--brick); box-shadow:0 3px 0 #2b1914}
+nav.tabsnav a{padding:.85rem 1rem; margin-bottom:-4px; color:#f3e4d8; text-decoration:none;
+  font:500 1.05rem var(--fonte); border-bottom:4px solid transparent}
+nav.tabsnav a:hover{background:#5c372c; color:#fff; border-bottom-color:var(--gold)}
+nav.tabsnav a[aria-current=page]{background:#4b2c23; color:#f4b45e; border-bottom-color:#f4b45e}   /* página onde você está */
+
+/* botão "Entrar": o margin-left:auto empurra ele pra direita do menu */
+.navlogin{margin:.4rem 0 .4rem auto; padding:.4rem 1rem; background:#f4b45e; color:#26140f;
+  border:2px solid #26140f; border-radius:4px; font:700 1rem var(--fonte); cursor:pointer}
+.navlogin:hover{background:#ffc878}
+
+/* ---------- 4. SALA ----------
+   A moldura de tijolos é a imagem img/sala.png (border-image) e img/sala-chao.png repetido. O flex:1 faz a sala esticar até o rodapé. */
+.room{flex:1; width:min(1100px,calc(100% - 1.5rem)); margin:0 auto; padding:.6rem 1rem;
+  border:44px solid transparent; border-image:url(../img/sala.png) 62/44px round;
+  background:#6e4338 url(../img/sala-chao.png) 0 0/400px 400px repeat; background-clip:padding-box}
+
+/* ---------- 5. CARTÕES E BOTÕES ---------- */
+/* painel marrom onde fica cada seção */
+.box{margin-bottom:1rem; padding:1.1rem; background:var(--panel); border:1px solid var(--line); border-radius:6px}
+.box h2{margin-top:0; padding-bottom:.3rem; border-bottom:2px solid var(--rule)}
+
+/* cartão (usado nos itens e nos cartões explicativos) */
+.card{display:flex; flex-direction:column; gap:.3rem; padding:.8rem;
+  background:var(--panel2); border:1px solid var(--rule); border-radius:8px}
+.card h3{margin:.2rem 0; font-size:1.05rem}
+.card p{margin:0; color:var(--muted); font-size:.92rem}
+a.card{color:var(--text); text-decoration:none}                 /* cartão que é link (lista de itens) */
+a.card:hover,a.card:focus-visible{background:var(--panel); border-color:var(--accent)}
+
+.card img,.slide img,.coluna-img > img{background:#191919; border:1px solid #4a4a4a}
+.card img{width:64px; height:64px; border-radius:6px}
+
+.tag{align-self:flex-start; padding:.1rem .5rem; font-size:.78rem; font-weight:700;   /* etiqueta "Ativo"/"Passivo" */
+  color:var(--accent); border:1px solid var(--accent); border-radius:99px}
+
+.three{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:.8rem}   /* 3 cartões do "Sobre" */
+.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(190px,1fr)); gap:.8rem; margin-top:.8rem}   /* lista de itens */
+
+.btn{padding:.55rem 1rem; background:var(--accent); color:var(--onaccent); border:0;
+  border-radius:6px; font-weight:700; font-size:1rem; cursor:pointer}
+.btn.alt{background:var(--panel2); color:var(--text); border:1px solid var(--line)}   
+a.btn{display:inline-block; text-decoration:none}                                
+
+/* ---------- 6. PÁGINAS DE ITENS ---------- */
+/* abas Todos / Ativos / Passivos */
+.search{margin-bottom:.8rem}
+[role=tablist]{display:flex; flex-wrap:wrap; gap:.3rem}
+[role=tab]{padding:.5rem 1rem; background:var(--panel2); color:var(--text); border:2px solid var(--line);
+  border-radius:6px 6px 0 0; font-weight:700; font-size:1rem; cursor:pointer}
+[role=tab][aria-selected=true]{background:var(--accent); border-color:var(--accent); color:var(--onaccent)}
+
+/* página de detalhes de um item */
+.crumbs{margin:0 0 .8rem; color:var(--muted)}                       /* "Os 100 itens › Nome" */
+.detail{display:grid; grid-template-columns:200px 1fr; gap:1.2rem; align-items:start}
+.detail h3{margin:1rem 0 .2rem}
+.coluna-img{display:flex; flex-direction:column; gap:.8rem}          /* sprite grande + quadro do Isaac equipado */
+.coluna-img > img{width:200px; height:200px; border-radius:8px}
+.equipado{margin:0; padding:.6rem; text-align:center; background:var(--panel2); border:1px solid var(--rule); border-radius:8px}
+.equipado[hidden]{display:none}                                  
+.equipado .quadro{display:grid; place-items:center; min-height:120px; background:#4b2c23; border-radius:6px}
+.equipado img{display:block; width:100%; height:150px; object-fit:contain; image-rendering:pixelated}
+.equipado figcaption{margin-top:.5rem; font-size:.9rem}
+.equipado small{color:var(--muted)}
+.dados dt{margin-top:.6rem; font-weight:700; color:var(--accent)}    /* Recarga, Desbloqueio, Observações */
+.dados dd{margin:0}
+.pager{display:flex; flex-wrap:wrap; justify-content:space-between; gap:.5rem; margin:1.2rem 0}   /* anterior / voltar / próximo */
+
+/* ---------- 7. CARROSSÉIS ---------- */
+/* "Itens em destaque": um slide por vez (o JS põe a classe .on no slide visível) */
+.slide{display:none; grid-template-columns:140px 1fr; gap:1rem; align-items:center; min-height:170px}
+.slide.on{display:grid}
+.slide img{width:140px; height:140px; border-radius:8px}
+.ctl{display:flex; gap:.5rem; align-items:center; margin-top:.6rem}
+
+/* "Imagens do jogo": moldura marrom esmaecida */
+.galeria{padding:.7rem; background:#5a362c; border:2px solid var(--brick); border-radius:10px; box-shadow:inset 0 0 14px rgba(0,0,0,.25)}
+.palco{position:relative; aspect-ratio:642/486; background:#4b2c23; border:2px solid #4a2a22; border-radius:6px; overflow:hidden}   
+.palco:fullscreen{aspect-ratio:auto}
+.shot{position:absolute; inset:0; display:none; margin:0}
+.shot.on{display:block}
+.shot img{display:block; width:100%; height:100%; object-fit:contain; opacity:.94}
+
+.seta{position:absolute; top:50%; width:46px; height:46px; margin-top:-23px; padding:0; display:grid; place-items:center;
+  background:rgba(58,33,26,.6); color:#f3e4d8; border:1px solid rgba(243,228,216,.35); border-radius:50%; font-size:1.5rem; cursor:pointer}
+.seta.prev{left:.6rem}
+.seta.next{right:.6rem}
+.seta:hover{background:rgba(58,33,26,.9); color:var(--gold); border-color:var(--gold)}
+
+.palco .pos{position:absolute; left:.6rem; top:.6rem; padding:.1rem .6rem; background:#6e4338; color:#f3e4d8;   /* contador "1 / 5" */
+  border:1px solid var(--brick); border-radius:99px; font-size:.85rem; font-weight:700}
+.ferramentas{position:absolute; right:.6rem; bottom:.6rem; display:flex; gap:.4rem}   /* pausar + tela cheia */
+.mini{width:38px; height:32px; padding:0; background:rgba(58,33,26,.7); color:#f3e4d8;
+  border:1px solid rgba(243,228,216,.4); border-radius:4px; font-size:1.05rem; cursor:pointer}
+.mini:hover{background:rgba(58,33,26,.95); color:var(--gold)}
+
+/* barrinha amarela que enche até a próxima imagem (a classe .rodando liga/desliga) */
+.progresso{position:absolute; left:0; bottom:0; height:3px; width:0; background:#d9b06a}
+.galeria.rodando .progresso{animation:encher var(--tempo) linear forwards}
+@keyframes encher{to{width:100%}}
+
+.thumbs{display:grid; grid-template-columns:repeat(auto-fit,minmax(70px,1fr)); gap:.5rem; margin-top:.6rem}   /* miniaturas */
+.thumbs button{padding:0; aspect-ratio:642/486; background:#4b2c23; border:2px solid transparent;
+  border-radius:5px; overflow:hidden; opacity:.6; cursor:pointer}
+.thumbs button:hover{opacity:.9}
+.thumbs button[aria-current=true]{border-color:#d9b06a; opacity:1}   /* miniatura da imagem que está aparecendo */
+.thumbs img{display:block; width:100%; height:100%; object-fit:cover}
+.legenda{margin:.6rem 0 .1rem; text-align:center; color:#f3e4d8; font-size:.95rem}
+
+/* ---------- 8. VÍDEO E BLOCO CLICÁVEL ---------- */
+.video{aspect-ratio:16/9; background:#4b2c23; border:2px solid var(--brick); border-radius:8px; overflow:hidden}
+.video iframe{display:block; width:100%; height:100%; border:0}
+
+/* bloco grande "Ver os 100 itens" no fim da home */
+.tile{display:flex; align-items:center; gap:1.2rem; margin-bottom:1rem; padding:1rem 1.4rem;
+  background:var(--panel); color:var(--text); text-decoration:none; border:2px solid var(--line); border-radius:8px}
+.tile:hover,.tile:focus-visible{background:var(--panel2); border-color:var(--accent)}
+.tile img{height:96px; width:auto; flex:none}
+.tile strong{display:block; font:700 1.5rem var(--fonte); color:var(--accent)}
+.tile span{color:var(--muted)}
+
+/* ---------- 9. JANELINHAS, RODAPÉ E BOTÃO DE ACESSIBILIDADE ---------- */
+dialog{width:92%; max-width:420px; background:var(--panel); color:var(--text); border:2px solid var(--accent); border-radius:10px}
+dialog::backdrop{background:rgba(0,0,0,.7)} 
+
+footer{padding:1.2rem; background:var(--fundo-topo); color:var(--texto-fundo); text-align:center; font-size:.9rem}
+footer a{color:var(--link-fundo)}
+:root[data-theme="light"] footer :focus-visible{outline-color:#0b57d0}  
+
+/* botão redondo que fica fixo no canto (o de ascessibilidade) */
+.a11y-fab{position:fixed; right:max(1rem,env(safe-area-inset-right)); bottom:max(1rem,env(safe-area-inset-bottom)); z-index:60;
+  display:grid; place-items:center; width:56px; height:56px; padding:0; background:#f4b45e; color:#26140f;
+  border:3px solid #26140f; border-radius:50%; font-size:1.9rem; line-height:1; cursor:pointer;
+  box-shadow:0 3px 0 #000,0 6px 14px rgba(0,0,0,.5)}
+.a11y-fab:hover{background:#ffc878}
+
+/* ---------- 10. CELULAR / TELA PEQUENA ---------- */
+@media(max-width:1000px){
+  header.wiki .isaac{margin-right:0}
+}
+@media(max-width:700px){
+  .detail{grid-template-columns:1fr}                     
+  .coluna-img > img{width:140px; height:140px}
+  .room{border-width:24px; border-image-width:24px; padding:.2rem}
+  .sub{margin-top:0}
+}

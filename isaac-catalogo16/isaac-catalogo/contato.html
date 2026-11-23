@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+
+<meta charset="utf-8">
+<!-- <meta charset>: faz acentos e símbolos (ç, ã, ♿) aparecerem direitinho -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- <meta viewport>: faz o site se ajustar à largura do celular, em vez de aparecer minúsculo -->
+<title>Contato – Catálogo dos 100 Itens de The Binding of Isaac</title>
+
+<!-- <link>: liga a página a um arquivo de fora. Aqui, a fonte Comic Neue (reserva da Comic Sans)... -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+
+
+<script defer src="js/layout.js"></script>
+<script defer src="js/comum.js"></script>
+<script defer src="js/contato.js"></script>
+</head>
+
+<body data-pagina="contato">
+
+<main id="main" class="room">
+
+  <!-- CONTATO: formulário de mentirinha -->
+  <section class="box" id="contato" aria-labelledby="hc">
+    <h2 id="hc">Contato</h2>
+    <p>Tem dúvida ou achou um erro em algum item? Escreva para a gente.</p>
+
+    <form id="form" novalidate>
+     
+      <label for="nome">Nome</label><input id="nome" required autocomplete="name">
+      <label for="email">E-mail</label><input id="email" type="email" required autocomplete="email">
+      <label for="msg">Mensagem</label><textarea id="msg" rows="5" required></textarea>
+      <!-- type="submit": o botão que "envia" o formulário -->
+      <p><button class="btn" type="submit">Enviar</button></p>
+      <p id="fmsg" role="status" class="ok"></p>   <!-- aviso de erro ou de "enviado" -->
+    </form>
+  </section>
+
+</main>
+
+</body>
+</html>
